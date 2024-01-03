@@ -11,11 +11,11 @@ class model2(generic_potential.generic_potential):
         self.Ndim = 2
         self.v02 = 246.**2
         self.renormScaleSq = self.v02
-        self.l1 = .0323
+        self.l1 = .05
         self.l2 = 2.
-        self.l3 = -1.
-        self.l4 = 3.
-        self.l5 = 2.
+        self.l3 = -.5
+        self.l4 = 2
+        self.l5 = 5.
         self.v1 = v1
         self.v5 = np.sqrt((self.v02-self.v1 ** 2)/8)
         self.mu22 = -4 * self.v1 ** 2 * self.l1 + 3 * self.v5 **2* (self.l5 - 2 * self.l2)
@@ -29,6 +29,10 @@ class model2(generic_potential.generic_potential):
         self.yt = 1  # top quark Yukawa coupling constant
 
         print(self.v5)#这个是零温时候的v5
+        print(self.mu22)
+        print(self.mu32)
+        print(self.g)
+        print(self.gprime)
 
     def forbidPhaseCrit(self, X):
         return (np.array([X])[..., 0] < -5.0).any() or (np.array([X])[..., 1] < -5.0).any()
@@ -50,8 +54,8 @@ class model2(generic_potential.generic_potential):
         A =4*self.l1*v1**2
         B =4*v5**2*(self.l3+3*self.l4)
         C = v1*v5*(self.l5-2*self.l2)
-        mh_Sq = A + B - 2*np.sqrt((A - B) ** 2 + 3 * C ** 2)
-        mH_Sq = A + C + 2*np.sqrt((A - C) ** 2 + 4 * B ** 2)
+        mh_Sq = A + B - np.sqrt((A - B) ** 2 + 12 * C ** 2)
+        mH_Sq = A + B + np.sqrt((A - B) ** 2 + 12 * C ** 2)
         m3_Sq = 1/2*self.l5*(v1**2+8*v5**2)
         m5_Sq = 3/2*self.l5*v1**2+8*self.l3*v5**2
 
@@ -82,7 +86,7 @@ class model2(generic_potential.generic_potential):
         dof = np.array([12])
         return mt_Sq,  dof
 
-    def V1(self, bosons, fermions):
+    def V1(self,bosons, fermions ):
         mh_Sq, mH_Sq, m3_Sq, m5_Sq, mW_Sq, mZ_Sq = bosons[0]
         y = np.sum(mh_Sq * mh_Sq * (np.log(np.abs(mh_Sq /self.renormScaleSq) + 1e-100) - 1.5), axis=-1)
         y += np.sum(mH_Sq * mH_Sq * (np.log(np.abs(mH_Sq / self.renormScaleSq) + 1e-100) - 1.5), axis=-1)
@@ -99,7 +103,7 @@ class model2(generic_potential.generic_potential):
 
     def V1T(self, bosons, fermions, T, include_radiation=True):
         # This does not need to be overridden.
-        T2 = (T * T)[..., np.newaxis] + 1e-100
+        T2 = (T * T)+ 1e-100
         # the 1e-100 is to avoid divide by zero errors
         T4 = T * T * T * T
         mh_Sq, mH_Sq, m3_Sq, m5_Sq, mW_Sq, mZ_Sq = bosons[0]
@@ -109,8 +113,8 @@ class model2(generic_potential.generic_potential):
         y += np.sum(5 * Jb(m5_Sq / T2), axis=-1)
         y += np.sum(6 * Jb(mW_Sq / T2), axis=-1)
         y += np.sum(3 * Jb(mZ_Sq / T2), axis=-1)
-        MSq = fermions[0]
-        y += np.sum(12 * Jf(MSq / T2), axis=-1)
+        mt_Sq = fermions[0]
+        y += np.sum(-12 * Jf(mt_Sq / T2), axis=-1)
         return y * T4 / (2 * np.pi * np.pi)
 
     def V1T_from_X(self, X, T, include_radiation=True):
@@ -142,8 +146,16 @@ class model2(generic_potential.generic_potential):
         Pi_h = A+ B +(D+ E)*T**2- 2* np.sqrt((A - C+(D- E)*T**2) ** 2 + 4 * C ** 2)+T**2*F
         Pi_H = A+ B +(D+ E)*T**2+ 2* np.sqrt((A - C+(D- E)*T**2) ** 2 + 4 * C ** 2)+T**2*F
         Pi_W = 1/4 * g ** 2 * G +2*g**2*T**2  # W boson
-        Pi_Z = (g**2+gprime**2)*(T**2+G/8)+1/8*np.sqrt((g**2+gprime**2)**2*(64*T**4+16*T**2*G)+(g**2+gprime**2)**2*G**2)  # Z boson
-        Pi_gamma = (g**2+gprime**2)*(T**2+G/8)-1/8*np.sqrt((g**2+gprime**2)**2*(64*T**4+16*T**2*G)+(g**2+gprime**2)**2*G**2) # photon
+        Pi_Z = np.float64((g ** 2 + gprime ** 2) * (T ** 2 + G / 8) + 1 / 8 * np.sqrt((g ** 2 + gprime ** 2) ** 2 * (64 * T ** 4 + 16 * T ** 2 * G) + (g ** 2 + gprime ** 2) ** 2 * G ** 2))  # Z boson
+        Pi_gamma = np.float64((g ** 2 + gprime ** 2) * (T ** 2 + G / 8) - 1 / 8 * np.sqrt((g ** 2 + gprime ** 2) ** 2 * (64 * T ** 4 + 16 * T ** 2 * G) + (g ** 2 + gprime ** 2) ** 2 * G ** 2))  # photon
+        # print(G)
+        # print(g)
+        # print(gprime)
+        # print(Pi_Z)
+        # print(Pi_gamma)
+        # Z=(0.629**2+0.345**2)* (100 ** 2 + 90000 / 8) + 1 / 8 * np.sqrt((0.629 ** 2 + 0.345 ** 2) ** 2 * (64 * 100 ** 4 + 16 * 100 ** 2 * 90000) + (0.629 ** 2 + 0.345 ** 2) ** 2 * 90000 ** 2)
+        # print(Z)
+
         Pi_chi = T**2*F  # Goldstone boson
         Pi_3 = 1/2*self.l5*(v1**2+8*v5**2)+ 3/8*self.l5*T**2+ T**2*F
         Pi_5 = 3/2*self.l5*v1**2+8*self.l3*v5**2+ T**2/24*(3*self.l5+16*self.l3)+ T**2*F
@@ -159,18 +171,16 @@ class model2(generic_potential.generic_potential):
         Pi_h, Pi_H, Pi_3, Pi_5, Pi_chi, Pi_W, Pi_Z, Pi_gamma, Pi_dof = thermal
         mh_Sq, mH_Sq, m3_Sq, m5_Sq, mW_Sq, mZ_Sq = bosons[0]
 
-        y = -T / (12 * np.pi) * np.where(np.logical_and(Pi_h > 0, mh_Sq > 0), np.abs(Pi_h) ** (3 / 2) - np.abs(mh_Sq) ** (3 / 2), 0)
-        y += -T / (12 * np.pi) * np.where(np.logical_and(Pi_H > 0, mH_Sq > 0), Pi_h ** (3 / 2) - mH_Sq ** (3 / 2), 0)
-        y += -T / (12 * np.pi) * np.where(np.logical_and(Pi_3 > 0, m3_Sq > 0),
-                                          3 * (np.abs(Pi_3) ** (3 / 2) - np.abs(m3_Sq) ** (3 / 2)), 0)
-        y += -T / (12 * np.pi) * np.where(np.logical_and(Pi_5 > 0, m5_Sq > 0),
-                                          5 * (np.abs(Pi_5) ** (3 / 2) - np.abs(m5_Sq) ** (3 / 2)), 0)
-        y += -T / (12 * np.pi) * 3*(Pi_chi ** (3 / 2) - 0)
-        y += -T / (12 * np.pi) * 2 * (Pi_W ** (3 / 2) - mW_Sq ** (3 / 2))
-        y += -T / (12 * np.pi) * (Pi_Z ** (3 / 2) - mZ_Sq ** (3 / 2))
-        y += -T / (12 * np.pi) * (Pi_H ** (3 / 2) - 0)
+        y = -(np.abs(Pi_h) ** (3 / 2) - np.abs(mh_Sq) ** (3 / 2))
+        y -= ( Pi_H ** (3 / 2) - mH_Sq ** (3 / 2))
+        y -= 3 * (np.abs(Pi_3) ** (3 / 2) - np.abs(m3_Sq) ** (3 / 2))
+        y -= 5 * (np.abs(Pi_5) ** (3 / 2) - np.abs(m5_Sq) ** (3 / 2))
+        y -= 3 *(Pi_chi ** (3 / 2) - 0)
+        y -= 2 * (Pi_W ** (3 / 2) - mW_Sq ** (3 / 2))
+        y -= (Pi_Z ** (3 / 2) - mZ_Sq ** (3 / 2))
+        y -= (Pi_gamma ** (3 / 2) - 0)
 
-        return y
+        return y*T / (12 * np.pi)
 
     def Vtot(self, X, T, include_radiation=True):
         T = np.asanyarray(T, dtype=float)
@@ -184,7 +194,33 @@ class model2(generic_potential.generic_potential):
         y += self.V_d1T(thermal, bosons, T)
         return y
 
-
 m = model2()
-v=m.Vtot([100,86.97413408594535],100)
+v=m.Vtot([100,100],100)
 print(v)
+
+v0=m.V0([100,100])
+print(v0)
+
+boson=m.boson_massSq([100,100],100)
+print(boson)
+
+fermion=m.fermion_massSq([100,100])
+print(fermion)
+
+v1=m.V1([[  1264.86460013, 442735.13539987, 225000.        ,  35000.        ,
+         8920.73945779,  11604.81775675],[1, 1, 3, 5, 6, 3],[1.5       , 1.5       , 1.5       , 1.5       , 0.83333333,
+       0.83333333]],[5000.0, [12]])
+print(v1)
+
+v1t=m.V1T([[  1264.86460013, 442735.13539987, 225000.        ,  35000.        ,
+         8920.73945779,  11604.81775675],[1, 1, 3, 5, 6, 3],[1.5       , 1.5       , 1.5       , 1.5       , 0.83333333,
+       0.83333333]],[5000.0, [12]],100)
+print(v1t)
+
+thermal=m.thermal_Pi_massSq([100.,100.],100.)
+print(thermal)
+
+vd1t=m.V_d1T([189222.35962903383, 320961.1584360334, 258341.75903253362, 52508.42569920028, 14591.759032533615, 16850.285642499315, 21920.21131831161, 1.8189894035458565e-12, [1, 1, 3, 5, 3, 2, 1, 1]],[[  1264.86460013, 442735.13539987, 225000.        ,  35000.        ,
+         8920.73945779,  11604.81775675],[1, 1, 3, 5, 6, 3],[1.5       , 1.5       , 1.5       , 1.5       , 0.83333333,
+       0.83333333]],100.)
+print(vd1t)
