@@ -1,0 +1,3 @@
+[submodule "CosmoTransitions"]
+	path = CosmoTransitions
+	url = https://github.com/ycwu1030/CosmoTransitions.git
