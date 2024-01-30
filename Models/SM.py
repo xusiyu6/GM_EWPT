@@ -1,5 +1,5 @@
 import numpy as np
-from ..CosmoTransitions.cosmoTransitions import generic_potential
+from CosmoTransitions.cosmoTransitions import generic_potential
 
 C_VEV = 246.22
 C_MW = 80.385
@@ -40,7 +40,7 @@ class SM(generic_potential.generic_potential):
 
 
     def boson_massSq(self, X, T):
-
+        X = np.asanyarray(X)
         phi = X[...,0]
 
         mWpmSq, dofmWpm = self.g**2*phi**2/4.0, 2*3
@@ -59,7 +59,7 @@ class SM(generic_potential.generic_potential):
         return massSq, dof, c
 
     def boson_massSq_thermal(self, X, T):
-
+        X = np.asanyarray(X)
         phi = X[...,0]
 
         mWpmSq = self.g**2*phi**2/4.0
@@ -80,27 +80,27 @@ class SM(generic_potential.generic_potential):
         mChisq = self.mu2 + self.lam*phi**2
         mChisqT = self.mu2 + self.lam*phi**2 + termS
 
-        massSq = np.empty(mWpmSqT + (5,0))
-        massSqT = np.empty(mWpmSqT + (5,0))
+        massSq = np.empty(mWpmSqT.shape + (5,))
+        massSqT = np.empty(mWpmSqT.shape + (5,))
 
-        massSq[...,0] = mWpmSq
-        massSq[...,1] = mZsq
-        massSq[...,2] = mAsq
-        massSq[...,3] = mHsq
-        massSq[...,4] = mChisq
+        massSq[...,0] = (np.abs(mWpmSq) + mWpmSq)/2.0
+        massSq[...,1] = (np.abs(mZsq) + mZsq)/2.0
+        massSq[...,2] = (np.abs(mAsq) + mAsq)/2.0
+        massSq[...,3] = (np.abs(mHsq) + mHsq)/2.0
+        massSq[...,4] = (np.abs(mChisq) + mChisq)/2.0
 
-        massSqT[...,0] = mWpmSqT
-        massSqT[...,1] = mZsqT
-        massSqT[...,2] = mAsqT
-        massSqT[...,3] = mHsqT
-        massSqT[...,4] = mChisqT
+        massSqT[...,0] = (np.abs(mWpmSqT) + mWpmSqT)/2.0
+        massSqT[...,1] = (np.abs(mZsqT)+mZsqT)/2.0
+        massSqT[...,2] = (np.abs(mAsqT)+mAsqT)/2.0
+        massSqT[...,3] = (np.abs(mHsqT)+mHsqT)/2.0
+        massSqT[...,4] = (np.abs(mChisqT)+mChisqT)/2.0
 
         dof = np.array([2,1,1,1,3])
 
         return massSq, massSqT, dof
 
     def fermion_massSq(self, X):
-
+        X=np.asanyarray(X)
         phi = X[...,0]
 
         mTsq, dofT = self.yt**2*phi**2/2.0, 2*2*3
@@ -118,7 +118,7 @@ class SM(generic_potential.generic_potential):
 
         m2, m2T, dof = self.boson_massSq_thermal(X,T)
 
-        y = -T*(m2T**1.5-m2**1.5)*dof/12.0/C_PI
+        y = np.sum(-T*(m2T**1.5-m2**1.5)*dof/12.0/C_PI,axis=-1)
 
         return y
 
