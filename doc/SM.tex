@@ -1,0 +1,113 @@
+\documentclass[12pt]{article}
+\pdfoutput=1 % if your are submitting a pdflatex (i.e. if you have images in pdf, png or jpg format)
+
+\usepackage{jheppub} % for details on the use of the package, please see the JHEP-author-manual
+\usepackage{graphicx}  % needed for figures
+\usepackage{dcolumn}   % needed for some tablese$\cdot$cm
+\usepackage{bm}        % for math
+\usepackage{amssymb}   % for math
+\usepackage{subfigure}
+\usepackage{epstopdf}
+\usepackage{color}
+\usepackage{slashed}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{footnote}
+\usepackage{amsmath}
+\allowdisplaybreaks[4]
+\usepackage{accents}
+\newlength{\dhatheight}
+\newcommand{\doublehat}[1]{%
+    \settoheight{\dhatheight}{\ensuremath{\hat{#1}}}%
+    \addtolength{\dhatheight}{-0.35ex}%
+    \hat{\vphantom{\rule{1pt}{\dhatheight}}%
+    \smash{\hat{#1}}}}
+\newcommand{\ycwu}[1]{{\bf \color{red} yc: #1}}
+\usepackage{hyperref}
+% autoref configuration
+\def\figureautorefname~#1\null{Fig.\,#1\null}
+\def\tableautorefname~#1\null{Tab.\,#1\null}
+\renewcommand{\sectionautorefname}{Section}
+\renewcommand{\subsectionautorefname}{Section}
+\def\equationautorefname~#1\null{Eq.\,(#1)\null}
+
+\title{The Effective Potential for EWPT in the SM}
+\author[a]{ Yongcheng Wu}
+\author[a]{ Siyu Xu}
+\affiliation[a]{Department of Physics and Institute of Theoretical Physics, Nanjing Normal University, Nanjing, 210023, China}
+% \affiliation[b]{Institute-b}
+% \affiliation[c]{Institute-c}
+% \affiliation[d]{Institute-d}
+\emailAdd{ycwu@njnu.edu.cn}
+\emailAdd{xxxxxx}
+
+
+%\date{\today}
+
+\abstract{
+This is the document containing some details of the effective potential in the SM kept as a reference for the code.
+}
+
+
+\begin{document}
+\titlepage
+\maketitle
+\newpage
+
+\flushbottom
+
+\section{The effective potential}
+
+Here, as a practice, we present the effective potential for the SM.
+
+\subsection{The scalar field}
+
+In the SM, we have one scalar doublet:
+\begin{align}
+    \Phi = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        \phi_3 + i\phi_4 \\
+        \omega_1 + \phi_1 + i\phi_2
+    \end{pmatrix}
+\end{align}
+
+\subsection{The tree-level scalar potential}
+
+The tree-level potential is given by
+\begin{align}
+    \label{equ:V0}
+    V_0 &= \mu^2\Phi^\dagger\Phi + \lambda (\Phi^\dagger\Phi)^2 \nonumber\\
+        &\rightarrow \frac{1}{2}\mu^2\omega_1^2 + \frac{1}{4}\lambda \omega_1^4 + \text{Other terms involving $\phi_i$}
+\end{align}
+
+\subsubsection{Zero temperature relations}
+
+At zero temperature, the theory will provide one scalar and three goldstone bosons. Further, the theory should provide correct vev at zero temperature to give the correct (measured) mass of the gauge boson and fermions. We only consider the tree-level relations for these two considerations.
+
+The vev at zero temperature is determined by the minimum position of~\autoref{equ:V0}, while the mass of the scalar is determined by the quadruple terms in~\autoref{equ:V0}:
+\begin{align}
+    \begin{cases}
+    \left.\frac{\partial V_0}{\partial \omega_1}\right|_{\phi_i=0,\omega_1 = v_1} = 0 \\
+    \left.\frac{\partial^2 V_0}{\partial \phi_1^2}\right|_{\phi_i=0,\omega_1 = v_1} = m_H^2
+    \end{cases} \Rightarrow \begin{cases}
+    \mu^2 = -\frac{m_H^2}{2}\\
+    \lambda = \frac{m_H^2}{2v_1^2}
+    \end{cases}
+\end{align}
+where $v_1$ is the vev at zero temperature, $m_H$ is the mass of the scalar.
+
+\subsection{One loop correction at zero temperature}
+
+Here, we neglect the derivation of the Coleman-Weinberg potential and just list the result:
+
+\begin{align}
+    V_1 =
+\end{align}
+
+% \begin{acknowledgments}
+% Acknowledgments
+% \end{acknowledgments}
+
+\bibliographystyle{bibsty}
+\bibliography{references}
+
+\end{document}
