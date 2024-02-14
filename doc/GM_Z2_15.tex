@@ -1,0 +1,170 @@
+\documentclass[12pt]{article}
+\pdfoutput=1 % if your are submitting a pdflatex (i.e. if you have images in pdf, png or jpg format)
+
+\usepackage{jheppub} % for details on the use of the package, please see the JHEP-author-manual
+\usepackage{graphicx}  % needed for figures
+\usepackage{dcolumn}   % needed for some tablese$\cdot$cm
+\usepackage{bm}        % for math
+\usepackage{amssymb}   % for math
+\usepackage{subfigure}
+\usepackage{epstopdf}
+\usepackage{color}
+\usepackage{slashed}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{footnote}
+\usepackage{amsmath}
+\allowdisplaybreaks[4]
+\usepackage{accents}
+\newlength{\dhatheight}
+\newcommand{\doublehat}[1]{%
+    \settoheight{\dhatheight}{\ensuremath{\hat{#1}}}%
+    \addtolength{\dhatheight}{-0.35ex}%
+    \hat{\vphantom{\rule{1pt}{\dhatheight}}%
+    \smash{\hat{#1}}}}
+\newcommand{\ycwu}[1]{{\bf \color{red} yc: #1}}
+\usepackage{hyperref}
+% autoref configuration
+\def\figureautorefname~#1\null{Fig.\,#1\null}
+\def\tableautorefname~#1\null{Tab.\,#1\null}
+\renewcommand{\sectionautorefname}{Section}
+\renewcommand{\subsectionautorefname}{Section}
+\def\equationautorefname~#1\null{Eq.\,(#1)\null}
+
+\title{The Effective Potential for EWPT in $Z_2$ symmetric GM model with only $\omega_1$ and $\omega_5$ as background field}
+\author[a]{ Yongcheng Wu}
+\author[a]{ Siyu Xu}
+\affiliation[a]{Department of Physics and Institute of Theoretical Physics, Nanjing Normal University, Nanjing, 210023, China}
+% \affiliation[b]{Institute-b}
+% \affiliation[c]{Institute-c}
+% \affiliation[d]{Institute-d}
+\emailAdd{ycwu@njnu.edu.cn}
+\emailAdd{xxxxxx}
+
+
+%\date{\today}
+
+\abstract{
+This is the document containing some details of the effective potential in the $Z_2$ symmetric GM model with only $\omega_1$ and $\omega_2$ as background field kept as a reference for the corresponding code.
+}
+
+
+\begin{document}
+\titlepage
+\maketitle
+\newpage
+
+\flushbottom
+
+\section{The Model}
+
+In the GM model, along with the standard scalar doublet, we have two extra triplets. In bi-doublet and bi-triplet form, these fields are given as
+\begin{align}
+\Phi &= \frac{1}{\sqrt{2}}\begin{pmatrix}
+    \omega_1 + \phi_1 - i \phi_2 & \phi_3 + i \phi_4 \\
+    -\phi_3 + i \phi_4 & \omega_1 + \phi_1 + i \phi_2
+\end{pmatrix}\\
+ X &= \frac{1}{\sqrt{2}}\begin{pmatrix}
+    \omega_8+\phi_8-i\phi_9 & \phi_6+i\phi_7 & \phi_{12}+i\phi_{13}\\
+    -\phi_{10}+i\phi_{11} & \sqrt{2}(\omega_5+\phi_5) & \phi_{10}+i\phi_{11}\\
+    \phi_{12}-i\phi_{13}& -\phi_6+i\phi_7 & \omega_8 +\phi_8 +i\phi_9
+\end{pmatrix}
+\end{align}
+where we only consider the custodial symmetric case with $\omega_8 = \sqrt{2}\omega_5$. $\phi_i$'s are all real scalar components, while $\omega_i$'s are background fields.
+
+The tree-level potential with a $Z_2$ symmetry is given by
+\begin{align}
+    \label{equ:V0}
+    V_0 &= \frac{\mu_2^2}{2}{\rm Tr}(\Phi^\dagger\Phi)+\frac{\mu_3^2}{2}{\rm Tr}(X^\dagger X) + \lambda_1\left({\rm Tr}(\Phi^\dagger\Phi)\right)^2 + \lambda_2{\rm Tr}(\Phi^\dagger\Phi){\rm Tr}(X^\dagger X) \nonumber \\
+    & \qquad + \lambda_3{\rm Tr}(X^\dagger X X^\dagger X) + \lambda_4\left({\rm Tr}(X^\dagger X)\right)^2 - \lambda_5{\rm Tr}(\Phi^\dagger \tau^a\Phi\tau^b){\rm Tr}(X^\dagger t^a X t^b)
+\end{align}
+where $\tau^a=\sigma^a/2$ with $\sigma^a$ being the Pauli matrices. The generators for the triplet representation are given as
+\begin{align}
+    t^1 = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        0 & 1 & 0 \\
+        1 & 0 & 1 \\
+        0 & 1 & 0
+    \end{pmatrix}, \quad t^2=\frac{1}{\sqrt{2}}\begin{pmatrix}
+        0 & -i & 0 \\
+        i & 0 & -i \\
+        0 & i & 0
+    \end{pmatrix}, \quad t^3=\begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 0 & 0 \\
+        0 & 0 & -1
+    \end{pmatrix}.
+\end{align}
+
+
+\section{The effective potential}
+
+\subsection{The tree-level effective potential}
+
+After expansion and keeping the terms only involving $\omega_1$ and $\omega_5$, we have
+\begin{align}
+    \label{equ:V0eff}
+    V_0 &= \frac{\mu_2^2}{2}\omega_1^2 + \frac{3\mu_3^2}{2}\omega_5^2 + \lambda_1 \omega_1^4 + 3\lambda_2 \omega_1^2 \omega_5^2 +3\lambda_3\omega_5^4 + 9\lambda_4\omega_5^4-\frac{3\lambda_5}{2}\omega_1^2\omega_5^2
+\end{align}
+
+\subsubsection{Zero temperature relations}
+
+At zero temperature, the theory will provide one scalar and three goldstone bosons. Further, the theory should provide correct vev at zero temperature to give the correct (measured) mass of the gauge boson and fermions. We only consider the tree-level relations for these considerations.
+
+The vev at zero temperature is determined by the minimum position of~\autoref{equ:V0}, while the mass of the scalar is determined by the quadruple terms in~\autoref{equ:V0}:
+\begin{align}
+    \begin{cases}
+    \left.\frac{\partial V_0}{\partial \omega_1}\right|_{\phi_i=0,\omega_1 = v_1,\omega_5=v_5} = 0 \\
+    \left.\frac{\partial V_0}{\partial \omega_5}\right|_{\phi_i=0,\omega_1 = v_1,\omega_5=v5} = 0
+    \end{cases} \Rightarrow \begin{cases}
+    \mu_2^2 = -4\lambda_1v_1^2+3(\lambda_5-2\lambda_2)v_5^2\\
+    \mu_3^2 = (\lambda_5-2\lambda_2)v_1^2-4(\lambda_3+3\lambda_4)v_5^2
+    \end{cases}
+\end{align}
+where $v_{1,5}$ is the vev at zero temperature.
+
+The mass of the scalars are determined by the quadratic terms of the potential. After electroweak symmetry breaking, in current case, we preserve the custodial symmetry (at zero temperature, it is better to keep the custodial symmetry). The scalars are grouped into different multiplets under the custodial symmetry:
+\begin{subequations}
+    \begin{align}
+        H_5^{\pm\pm} &= \frac{\phi_{12}\pm i\phi_{13}}{\sqrt{2}}\\
+        H_5^\pm &= \frac{(\phi_{10}-\phi_6) \pm i(\phi_{11}-\phi_7)}{2}\\
+        H_5^0 &= \sqrt{\frac{2}{3}}\phi_5 - \sqrt{\frac{1}{3}}\phi_8\\
+        H_3^\pm &= - \frac{s_H}{\sqrt{2}}(\phi_3\pm i\phi_4) + \frac{c_H}{2}((\phi_{10}+\phi_6)\pm i(\phi_{11}+\phi_7))\\
+        H_3^0 &= -s_H \phi_2 + c_H \phi_9\\
+        G^\pm &= \frac{c_H}{\sqrt{2}}(\phi_3\pm i\phi_4)+\frac{s_H}{2}((\phi_{10}+\phi_6)\pm(\phi_{11}+\phi_7))\\
+        G^0 &= c_H \phi_2 + s_H \phi_9\\
+        H_1^0 &= \phi_1 \\
+        H_1^{0\prime} &= \sqrt{\frac{1}{3}}\phi_5 + \sqrt{\frac{2}{3}}\phi_8
+    \end{align}
+\end{subequations}
+The singlets listed above will further mix to form the mass eigenstates:
+\begin{align}
+\begin{pmatrix}
+    h\\
+    H
+\end{pmatrix} = \begin{pmatrix}
+    c_\alpha & -s_\alpha \\
+    s_\alpha & c_\alpha
+\end{pmatrix}\begin{pmatrix}
+    H_1^0\\
+    H_1^{0\prime}
+\end{pmatrix}
+\end{align}
+
+
+
+\subsection{One loop correction at zero temperature}
+
+Here, we neglect the derivation of the Coleman-Weinberg potential and just list the result:
+
+\begin{align}
+    V_1 =
+\end{align}
+
+% \begin{acknowledgments}
+% Acknowledgments
+% \end{acknowledgments}
+
+\bibliographystyle{bibsty}
+\bibliography{references}
+
+\end{document}

@@ -21,4 +21,4 @@ class GM_Z2_15(generic_potential.generic_potential):
     def init(self):
         pass
 
-    def set_potential_parameters(self, mu22, mu32, lam1,)
+    def set_potential_parameters(self, mu22, mu32, lam1, lam2)
