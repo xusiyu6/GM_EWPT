@@ -112,6 +112,7 @@ At zero temperature, the theory will provide one scalar and three goldstone boso
 
 The vev at zero temperature is determined by the minimum position of~\autoref{equ:V0}, while the mass of the scalar is determined by the quadruple terms in~\autoref{equ:V0}:
 \begin{align}
+    \label{equ:stationary_condition}
     \begin{cases}
     \left.\frac{\partial V_0}{\partial \omega_1}\right|_{\phi_i=0,\omega_1 = v_1,\omega_5=v_5} = 0 \\
     \left.\frac{\partial V_0}{\partial \omega_5}\right|_{\phi_i=0,\omega_1 = v_1,\omega_5=v5} = 0
@@ -205,6 +206,43 @@ We would like to use the zero-temperature masses as input instead of $\lambda_i$
         s_\alpha c_\alpha (m_H^2 - m_h^2) &= 2\sqrt{3}(2\lambda_2-\lambda_5)v_1 v_5
     \end{align}
 \end{subequations}
+Then we have
+\begin{subequations}
+    \begin{align}
+        \lambda_1 &= \frac{m_h^2 c_\alpha^2 + m_H^2 s_\alpha^2}{8v_1^2}\\
+        \lambda_2 &= \frac{m_3^2}{v_1^2 + 8 v_5^2} + \frac{s_{2\alpha}}{8\sqrt{3}}\frac{m_H^2-m_h^2}{v_1v_5}\\
+        \lambda_3 &= \frac{m_5^2}{8v_5^2} - \frac{3v_1^2}{8v_5^2}\frac{m_3^2}{v_1^2+8v_5^2}\\
+        \lambda_4 &= \frac{v_1^2}{8v_5^2}\frac{m_3^2}{v_1^2+8v_5^2}+\frac{m_h^2s_\alpha^2+m_H^2c_\alpha^2-m_5^2}{24v_5^2}\\
+        \lambda_5 &= \frac{2m_3^2}{v_1^2+8v_5^2}
+    \end{align}
+\end{subequations}
+Together with~\autoref{equ:stationary_condition}, we can treat $\mu_2^2,\mu_3^2,\lambda_{1,\cdots,5}$ as functions of $(v_1,v_5,\alpha,m_h^2,m_H^2,m_3^2,m_5^2)$ (the zero-temperature physical quantities).
+
+Further, we will also need to provide the correct mass for gauge bosons which is obtained from the kinematic terms of the scalars:
+\begin{align}
+\mathcal{L}_K = \frac{1}{2}{\rm Tr}\left((D_\mu\Phi)^\dagger(D^\mu\Phi)\right) + \frac{1}{2}{\rm Tr}\left((D_\mu X)^\dagger (D^\mu X)\right)
+\end{align}
+At the stationary point (and zero temperature), we have the mass matrix for the gauge bosons in basis $(W_1,W_2,W_3,B)$
+\begin{align}
+    \mathcal{M}_G^2 = \frac{1}{4}(v_1^2+8v_5^2)\begin{pmatrix}
+        g^2 & 0 & 0 & 0 \\
+        0 & g^2 & 0 & 0 \\
+        0 & 0 & g^2 & -g^2t_{\theta_w} \\
+        0 & 0 & -g^2t_{\theta_w} & g^2t_{\theta_w}
+    \end{pmatrix},
+\end{align}
+which provides a constraint at zero temperature as
+\begin{align}
+    v_1^2 + 8v_5^2 = v^2 = (246\,{\rm GeV})^2
+\end{align}
+Hence, we would like to introduce another parameter $\theta_H$ to parameterize the relation between $v_1$ and $v_5$:
+\begin{align}
+    \cos\theta_H \equiv \frac{v_1}{v},\qquad  \sin\theta_h \equiv \frac{2\sqrt{2}v_5}{v}
+\end{align}
+Then finally, we reach the full parameter set (at zero temperature) that will be used as input parameters for the model. All other parameters (either at zero temperature or at finite temperature) will be expressed in terms of this parameter set:
+\begin{align}
+    v(=246\,{\rm GeV}), s_H(\equiv \sin\theta_H), \alpha, m_h(=125\,{\rm GeV}), m_H, m_3, m_5
+\end{align}
 
 \subsection{One loop correction at zero temperature}
 
