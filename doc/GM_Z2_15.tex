@@ -244,13 +244,75 @@ Then finally, we reach the full parameter set (at zero temperature) that will be
     v(=246\,{\rm GeV}), s_H(\equiv \sin\theta_H), \alpha, m_h(=125\,{\rm GeV}), m_H, m_3, m_5
 \end{align}
 
+On the other hand, the vevs of the scalars also provide the mass for the fermions. In GM model, only the doublet can provide the mass for the fermions in the same way as in SM. Note that we ignore the contribution from the triplet for the neutrinos:
+\begin{align}
+    \mathcal{L}_Y = -y_u^i \bar{Q}_L^i\tilde{\phi}u_R - y_d^i \bar{Q}_L^i\phi d_R + h.c.
+\end{align}
+where, $\phi = (\phi_3+i\phi_4, \omega_1+\phi_1+i\phi_2)^T/\sqrt{2}$ is the doublet. In practice, we only consider the 3rd generation quarks, then we have
+\begin{align}
+    \mathcal{L}_Y^{3q} = -y_t \bar{Q}_L^3\tilde{\phi}t_R - y_b \bar{Q}_L^3 \phi b_R +h.c.
+\end{align}
+where $Q_L^3 = (t_L, b_L)^T$. The above Yukawa couplings provide the mass for the 3rd generation quarks after the Electroweak symmetry breaking at zero-temperature:
+\begin{align}
+    m_t = \frac{y_tv_1}{\sqrt{2}},\quad m_b = \frac{y_bv_1}{\sqrt{2}}.
+\end{align}
+
 \subsection{One loop correction at zero temperature}
 
-Here, we neglect the derivation of the Coleman-Weinberg potential and just list the result:
+Here, we neglect the derivation of the Coleman-Weinberg potential and just list the result, and we only consider the case in Landau gauge and in $\overline{\text{MS}}$ scheme:
 
 \begin{align}
-    V_1 =
+    V_{1,T=0}^{\overline{\text{MS}},\text{Landau}} &= \frac{1}{64\pi^2}\sum_i(-1)^{2s_i}(1+2s_i)m_i^4(\omega)\left(\log\left(\frac{m_i^2(\omega)}{\mu^2}\right)-k_i\right) \nonumber\\
+    &=\frac{1}{64\pi^2}\sum_f(-1)^{2s_F}n_Fm_F^4(\omega)\left(\log\left(\frac{m_F^2(\omega)}{\mu^2}\right)-k_F\right)
 \end{align}
+where $i$ runs over all real scalar, Weyl fermion and vector boson degrees of freedom, (hence the summation should be run over any internal d.o.f like colors), $s_i$ is the spin of the field $i$, and $k_i = 3/2$ for scalars and fermions and $5/6$ for gauge bosons, and $m_i^2(\omega)$ is the squared field dependent mass. In the second line, we combined the summation for the internal d.o.f, with the $n_F$ listed in the second column of~\autoref{tab:fields}.
+
+In $Z_2$ symmetric GM model, the fields we need to sum over are given in~\autoref{tab:fields}. For fermions, we only consider the 3rd generation quarks.
+
+\begin{table}
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Fields & $n_F$ & $m_F^2(\omega)$ \\
+        \hline
+        $h$ & 1 & $\frac{\mu_2^2 + \mu_3^2 + (12\lambda_1+\lambda_{25})\omega_1^2 + 3(\lambda_{25}+4\lambda_{34})\omega_5^2 - \left((\mu_2^2-\mu_3^2+(12\lambda_1-\lambda_{25})\omega_1^2)^2+9(4\lambda_{34}-\lambda_{25})^2\omega_5^4+6((12\lambda_1(\lambda_{25}-4\lambda_{34})+\lambda_{25}(7\lambda_{25}+4\lambda_{34}))\omega_1^2+(\lambda_{25}-4\lambda_{34})(\mu_2^2-\mu_3^2))\omega_5^2\right)^{1/2} }{2}$ \\
+        \hline
+        $H$ & 1 & $\frac{\mu_2^2 + \mu_3^2 + (12\lambda_1+\lambda_{25})\omega_1^2 + 3(\lambda_{25}+4\lambda_{34})\omega_5^2 + \left((\mu_2^2-\mu_3^2+(12\lambda_1-\lambda_{25})\omega_1^2)^2+9(4\lambda_{34}-\lambda_{25})^2\omega_5^4+6((12\lambda_1(\lambda_{25}-4\lambda_{34})+\lambda_{25}(7\lambda_{25}+4\lambda_{34}))\omega_1^2+(\lambda_{25}-4\lambda_{34})(\mu_2^2-\mu_3^2))\omega_5^2\right)^{1/2} }{2}$ \\
+        \hline
+        $H_3$ & 3 & $\frac{2(\mu_2^2+\mu_3^2)+(8\lambda_1+\lambda_{425})\omega_1^2+2(\lambda_{625}+4\lambda_{34})\omega_5^2+\left((2(\mu_2^2-\mu_3^2)+(8\lambda_1-\lambda_{425})\omega_1^2)^2+4(\lambda_{625}-4\lambda_{34})^2\omega_5^4+4(2(\lambda_{625}-4\lambda_{34})(\mu_2^2-\mu_3^2)+(2\lambda_5(4\lambda_1+\lambda_2-2\lambda_{34})+8(2\lambda_1-\lambda_2)(3\lambda_2-2\lambda_{34})+9\lambda_5^2)\omega_1^2)\omega_5^2\right)^{1/2}}{4}$ \\
+        \hline
+        $H_5$ & 5 & $\mu_3^2+\frac{1}{2}(4\lambda_2+\lambda_5)\omega_1^2+12(\lambda_3+\lambda_4)\omega_5^2$ \\
+        \hline
+        $G$ & 3 &  $\frac{2(\mu_2^2+\mu_3^2)+(8\lambda_1+\lambda_{425})\omega_1^2+2(\lambda_{625}+4\lambda_{34})\omega_5^2-\left((2(\mu_2^2-\mu_3^2)+(8\lambda_1-\lambda_{425})\omega_1^2)^2+4(\lambda_{625}-4\lambda_{34})^2\omega_5^4+4(2(\lambda_{625}-4\lambda_{34})(\mu_2^2-\mu_3^2)+(2\lambda_5(4\lambda_1+\lambda_2-2\lambda_{34})+8(2\lambda_1-\lambda_2)(3\lambda_2-2\lambda_{34})+9\lambda_5^2)\omega_1^2)\omega_5^2\right)^{1/2}}{4}$ \\
+        \hline
+        $W$ & 6 & $\frac{1}{4}g^2(\omega_1^2+8\omega_5^2)$ \\
+        \hline
+        $Z$ & 3 & $\frac{1}{4}\frac{g^2}{c_W^2}(\omega_1^2+8\omega_5^2)$ \\
+        \hline
+        $\gamma$ & 2 & $0$ \\
+        \hline
+        $t_L$ & 6 & $\frac{1}{2}y_t^2\omega_1^2$ \\
+        \hline
+        $\bar{t}_R$ & 6 & $\frac{1}{2}y_t^2\omega_1^2$ \\
+        \hline
+        $b_L$ & 6 & $\frac{1}{2}y_b^2\omega_1^2$ \\
+        \hline
+        $\bar{b}_R$ & 6 & $\frac{1}{2}y_b^2\omega_1^2$ \\
+        \hline
+    \end{tabular}}
+    \caption{\label{tab:fields}The fields and corresponding d.o.f (including $(1+2s)$ factor) and field dependent mass in $Z_2$ symmetric GM model, where $\lambda_{25}=2\lambda_2 -\lambda_5$, $\lambda_{425}=4\lambda_2-\lambda_5$, $\lambda_{625}=6\lambda_2+\lambda_5$ and $\lambda_{34}=\lambda_3+3\lambda_4$. Note that the fermion mass should be understood as the eigenvalues of $M_F^\dagger M_F$.}
+\end{table}
+
+\subsection{The finite temperature corrections}
+
+The thermal corrections to the effective potential in the Landau gauge read:
+\begin{align}
+    V_{1T}^{\text{Landau}} = \frac{T^4}{2\pi^2}\left(\sum_{b\in\text{Bosons}}n_b J_B\left(\frac{m_b^2(\omega)}{T^2}\right)-\sum_{f\in\text{Fermions}}n_fJ_F\left(\frac{m_f^2(\omega)}{T^2}\right)\right)
+\end{align}
+where the $n_i$ and the filed dependent masses are listed in~\autoref{tab:fields}.
+
+\subsection{The Daisy resummations}
 
 % \begin{acknowledgments}
 % Acknowledgments
