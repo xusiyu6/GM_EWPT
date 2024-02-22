@@ -198,6 +198,7 @@ The mass matrix in $(h,H)$ basis~\autoref{equ:mass_singlet_diag} and that in $(H
 \end{align}
 We would like to use the zero-temperature masses as input instead of $\lambda_i$'s. Hence we have the following five relationships:
 \begin{subequations}
+    \label{equ:masses}
     \begin{align}
         m_5^2 &= \frac{3}{2}\lambda_5v_1^2 + 8\lambda_3 v_5^2\\
         m_3^2 &= \frac{1}{2}\lambda_5(v_1^2 + 8v_5^2) \\
@@ -228,7 +229,7 @@ At the stationary point (and zero temperature), we have the mass matrix for the 
         g^2 & 0 & 0 & 0 \\
         0 & g^2 & 0 & 0 \\
         0 & 0 & g^2 & -g^2t_{\theta_w} \\
-        0 & 0 & -g^2t_{\theta_w} & g^2t_{\theta_w}
+        0 & 0 & -g^2t_{\theta_w} & g^2t_{\theta_w}^2
     \end{pmatrix},
 \end{align}
 which provides a constraint at zero temperature as
@@ -257,6 +258,61 @@ where $Q_L^3 = (t_L, b_L)^T$. The above Yukawa couplings provide the mass for th
     m_t = \frac{y_tv_1}{\sqrt{2}},\quad m_b = \frac{y_bv_1}{\sqrt{2}}.
 \end{align}
 
+Further, as we are working in custodial symmetric case, it is convenient to also work in custodial multiplet basis. For this purpose, we define following real scalars in custodial multiplet basis:
+\begin{subequations}
+    \begin{align}
+        S_1 &= \phi_1, \quad  S_2 = \sqrt{\frac{1}{3}}\phi_5 + \sqrt{\frac{2}{3}}\phi_8\\
+        T_1^1 &= \phi_2 ,\quad T_1^2 = \phi_3, \quad T_1^3 = \phi_4 \\
+        T_2^1 &= \phi_9,\quad  T_2^2 = \frac{\phi_6 + \phi_{10}}{\sqrt{2}},\quad T_2^3 = \frac{\phi_7 + \phi_{11}}{\sqrt{2}} \\
+        F_1 &= \sqrt{\frac{2}{3}}\phi_5 - \sqrt{\frac{1}{3}}\phi_8,\quad
+        F_2 = \frac{\phi_{10} - \phi_6}{\sqrt{2}},\quad
+        F_3 = \frac{\phi_{11} - \phi_7}{\sqrt{2}},\quad
+        F_4 = \phi_{12},\quad
+        F_5 = \phi_{13}
+    \end{align}
+\end{subequations}
+and we work in following basis:
+\begin{align}
+    \varphi = (S_1,S_2,T_1^1,T_2^1, T_1^2, T_2^2, T_1^3, T_2^3, F_1,F_2,F_3,F_4,F_5)
+\end{align}
+Then in this basis, we have the scalar mass matrix (depends on $\omega_1$ and $\omega_5$) as in following block diagonal form:
+\begin{align}
+    \label{equ:field_dependent_mass_matrix}
+    \mathcal{M}_\varphi^2 = \begin{pmatrix}
+        \mathcal{M}_S^2 & 0 & 0 & 0 & 0 \\
+        0 & \mathcal{M}_T^2 & 0 & 0 & 0 \\
+        0 & 0 & \mathcal{M}_T^2 & 0 & 0 \\
+        0 & 0 & 0 & \mathcal{M}_T^2 & 0 \\
+        0 & 0 & 0 & 0 & \mathcal{M}_F^2
+    \end{pmatrix}
+\end{align}
+with
+\begin{subequations}
+    \label{equ:field_dependent_mass_matrices}
+    \begin{align}
+        \label{equ:ms2}
+        \mathcal{M}_S^2 &= \begin{pmatrix}
+            \mu_2^2 + 12\lambda_1 \omega_1^2 + 3(2\lambda_2 -\lambda_5)\omega_5^2 & 2\sqrt{3}(2\lambda_2 -\lambda_5)\omega_1\omega_5 \\
+            2\sqrt{3}(2\lambda_2 -\lambda_5)\omega_1\omega_5 & \mu_3^2 + (2\lambda_2 -\lambda_5)\omega_1^2 + 12(\lambda_3 + 3\lambda_4)\omega_5^2
+        \end{pmatrix}\\
+        \label{equ:mt2}
+        \mathcal{M}_T^2 &= \begin{pmatrix}
+            \mu_2^2 + 4\lambda_1 \omega_1^2 + (6\lambda_2+\lambda_5)\omega_5^2 & -\sqrt{2}\lambda_5\omega_1\omega_5 \\
+            -\sqrt{2}\lambda_5\omega_1 \omega_5 & \mu_3^2 + \frac{1}{2}(4\lambda_2 - \lambda_5)\omega_1^2 + 4(\lambda_3 + 3\lambda_4)\omega_5^2
+        \end{pmatrix}\\
+        \mathcal{M}_F^2 &= \left(\mu_3^2 + \frac{1}{2}(4\lambda_2+\lambda_5)\omega_1^2+12(\lambda_3+\lambda_4)\omega_5^2\right)\mathbb{I}_{5\times5}
+    \end{align}
+\end{subequations}
+
+At zero temperature, we have
+\begin{align}
+    \omega_1 &\to v_1, \quad \omega_5 \to v_5 \\
+    \mu_2^2 &\to -4\lambda_1 v_1^2 + 3(\lambda_5-2\lambda_2)v_5^2 \\
+    \mu_3^2 &\to (\lambda_5-2\lambda_2)v_1^2 - 4(\lambda_3+3\lambda_4)v_5^2
+\end{align}
+Then the mass matrix will go back to the situation listed in~\autoref{equ:masses}.
+
+
 \subsection{One loop correction at zero temperature}
 
 Here, we neglect the derivation of the Coleman-Weinberg potential and just list the result, and we only consider the case in Landau gauge and in $\overline{\text{MS}}$ scheme:
@@ -271,20 +327,20 @@ In $Z_2$ symmetric GM model, the fields we need to sum over are given in~\autore
 
 \begin{table}
     \centering
-    \resizebox{\textwidth}{!}{
+    % \resizebox{\textwidth}{!}{
     \begin{tabular}{|c|c|c|c|}
         \hline
         Fields & $n_F$ & $m_F^2(\omega)$ \\
         \hline
-        $h$ & 1 & $\frac{\mu_2^2 + \mu_3^2 + (12\lambda_1+\lambda_{25})\omega_1^2 + 3(\lambda_{25}+4\lambda_{34})\omega_5^2 - \left((\mu_2^2-\mu_3^2+(12\lambda_1-\lambda_{25})\omega_1^2)^2+9(4\lambda_{34}-\lambda_{25})^2\omega_5^4+6((12\lambda_1(\lambda_{25}-4\lambda_{34})+\lambda_{25}(7\lambda_{25}+4\lambda_{34}))\omega_1^2+(\lambda_{25}-4\lambda_{34})(\mu_2^2-\mu_3^2))\omega_5^2\right)^{1/2} }{2}$ \\
+        $\varphi^E_{S,1}$ & 1 & $m_{S,1}^2$  \\
         \hline
-        $H$ & 1 & $\frac{\mu_2^2 + \mu_3^2 + (12\lambda_1+\lambda_{25})\omega_1^2 + 3(\lambda_{25}+4\lambda_{34})\omega_5^2 + \left((\mu_2^2-\mu_3^2+(12\lambda_1-\lambda_{25})\omega_1^2)^2+9(4\lambda_{34}-\lambda_{25})^2\omega_5^4+6((12\lambda_1(\lambda_{25}-4\lambda_{34})+\lambda_{25}(7\lambda_{25}+4\lambda_{34}))\omega_1^2+(\lambda_{25}-4\lambda_{34})(\mu_2^2-\mu_3^2))\omega_5^2\right)^{1/2} }{2}$ \\
+        $\varphi^E_{S,2}$ & 1 & $m_{S,2}^2$ \\
         \hline
-        $H_3$ & 3 & $\frac{2(\mu_2^2+\mu_3^2)+(8\lambda_1+\lambda_{425})\omega_1^2+2(\lambda_{625}+4\lambda_{34})\omega_5^2+\left((2(\mu_2^2-\mu_3^2)+(8\lambda_1-\lambda_{425})\omega_1^2)^2+4(\lambda_{625}-4\lambda_{34})^2\omega_5^4+4(2(\lambda_{625}-4\lambda_{34})(\mu_2^2-\mu_3^2)+(2\lambda_5(4\lambda_1+\lambda_2-2\lambda_{34})+8(2\lambda_1-\lambda_2)(3\lambda_2-2\lambda_{34})+9\lambda_5^2)\omega_1^2)\omega_5^2\right)^{1/2}}{4}$ \\
+        $\varphi^E_{T,1}$ & 3 & $m_{T,1}^2$ \\
         \hline
-        $H_5$ & 5 & $\mu_3^2+\frac{1}{2}(4\lambda_2+\lambda_5)\omega_1^2+12(\lambda_3+\lambda_4)\omega_5^2$ \\
+        $\varphi^E_{T,2}$ & 3 & $m_{T,2}^2$ \\
         \hline
-        $G$ & 3 &  $\frac{2(\mu_2^2+\mu_3^2)+(8\lambda_1+\lambda_{425})\omega_1^2+2(\lambda_{625}+4\lambda_{34})\omega_5^2-\left((2(\mu_2^2-\mu_3^2)+(8\lambda_1-\lambda_{425})\omega_1^2)^2+4(\lambda_{625}-4\lambda_{34})^2\omega_5^4+4(2(\lambda_{625}-4\lambda_{34})(\mu_2^2-\mu_3^2)+(2\lambda_5(4\lambda_1+\lambda_2-2\lambda_{34})+8(2\lambda_1-\lambda_2)(3\lambda_2-2\lambda_{34})+9\lambda_5^2)\omega_1^2)\omega_5^2\right)^{1/2}}{4}$ \\
+        $\varphi^E_F$ & 5 & $\mu_3^2+\frac{1}{2}(4\lambda_2+\lambda_5)\omega_1^2+12(\lambda_3+\lambda_4)\omega_5^2$ \\
         \hline
         $W$ & 6 & $\frac{1}{4}g^2(\omega_1^2+8\omega_5^2)$ \\
         \hline
@@ -300,8 +356,9 @@ In $Z_2$ symmetric GM model, the fields we need to sum over are given in~\autore
         \hline
         $\bar{b}_R$ & 6 & $\frac{1}{2}y_b^2\omega_1^2$ \\
         \hline
-    \end{tabular}}
-    \caption{\label{tab:fields}The fields and corresponding d.o.f (including $(1+2s)$ factor) and field dependent mass in $Z_2$ symmetric GM model, where $\lambda_{25}=2\lambda_2 -\lambda_5$, $\lambda_{425}=4\lambda_2-\lambda_5$, $\lambda_{625}=6\lambda_2+\lambda_5$ and $\lambda_{34}=\lambda_3+3\lambda_4$. Note that the fermion mass should be understood as the eigenvalues of $M_F^\dagger M_F$.}
+    \end{tabular}
+    % }
+    \caption{\label{tab:fields}The fields and corresponding d.o.f (including $(1+2s)$ factor) and field dependent mass in $Z_2$ symmetric GM model, where $m_{S,1/2}^2$ and $m_{T,1/2}^2$ are the eigenvalues of $\mathcal{M}_S^2$ (\autoref{equ:ms2})  and $\mathcal{M}_T^2$ (\autoref{equ:mt2}) respectively. Note that the fermion mass should be understood as the eigenvalues of $M_F^\dagger M_F$.}
 \end{table}
 
 \subsection{The finite temperature corrections}
@@ -313,6 +370,56 @@ The thermal corrections to the effective potential in the Landau gauge read:
 where the $n_i$ and the filed dependent masses are listed in~\autoref{tab:fields}.
 
 \subsection{The Daisy resummations}
+
+For the finite temperature resummation, we consider the Arnold-Espinosa procedure:
+\begin{align}
+    V_{\text{daisy}} = -\frac{T}{12\pi}\sum_i\left((\bar{m}_i^2(\omega))^{3/2}-(m_i^2(\omega))^{3/2}\right)
+\end{align}
+where $\bar{m}_i^2(\omega)$ and $m_i^2(\omega)$ are the eigenvalues of the mass matrices w/ and w/o thermal corrections respectively. The summation runs over all scalars and longitudinal component of the vector bosons. A general calculation of the thermal mass can be found in~\cite{Basler:2018cwe}. Here we just list the result for the $Z_2$ symmetric GM model. The scalar mass matrices w/o thermal corrections have already been given in~\autoref{equ:field_dependent_mass_matrix} and~\autoref{equ:field_dependent_mass_matrices}, while the thermal corrected mass matrix is given by
+\begin{subequations}
+    \begin{align}
+\bar{\mathcal{M}}_\varphi^2 &= \begin{pmatrix}
+    \bar{\mathcal{M}}_S^2 & 0 & 0 & 0 & 0 \\
+    0 & \bar{\mathcal{M}}_T^2 & 0 & 0 & 0 \\
+    0 & 0 & \bar{\mathcal{M}}_T^2 & 0 & 0 \\
+    0 & 0 & 0 & \bar{\mathcal{M}}_T^2 & 0 \\
+    0 & 0 & 0 & 0 & \bar{\mathcal{M}}_F^2
+\end{pmatrix} \\
+\bar{\mathcal{M}}_S^2 &= \mathcal{M}_S^2 + \Pi_S^2\\
+\bar{\mathcal{M}}_T^2 &= \mathcal{M}_T^2 + \Pi_S^2\\
+\bar{\mathcal{M}}_F^2 &= \mathcal{M}_F^2 + \Delta_2^2\mathbb{I}_{5\times5}
+    \end{align}
+\end{subequations}
+with
+\begin{subequations}
+    \begin{align}
+        \Pi_S^2 &= \begin{pmatrix}
+            \Delta_1^2 & 0 \\
+            0 & \Delta_2^2
+        \end{pmatrix}\\
+        \Delta_1^2 &= \frac{T^2}{24}\left(\frac{9}{2}g^2 + 12(4\lambda_1 + 3\lambda_2)+6(y_t^2+y_b^2)\right)\\
+        \Delta_2^2 &= \frac{T^2}{24}\left(12g^2+8(2\lambda_2 + 7\lambda_3 + 11\lambda_4)\right)
+    \end{align}
+\end{subequations}
+
+For the longitudinal components of the gauge bosons, the field dependent mass matrices w/o and w/ thermal correction are given by
+\begin{subequations}
+    \begin{align}
+        \mathcal{M}_G^2 &= \frac{1}{4}(\omega_1^2+8\omega_5^2)\begin{pmatrix}
+            g^2 & 0 & 0 & 0 \\
+            0 & g^2 & 0 & 0 \\
+            0 & 0 & g^2 & -g^2t_{\theta_w} \\
+            0 & 0 & -g^2t_{\theta_w} & g^2t_{\theta_w}^2
+        \end{pmatrix}\\
+        \bar{\mathcal{M}}_G^2 &= \mathcal{M}_G^2 + \frac{T^2}{6}\begin{pmatrix}
+        \frac{91}{3}g^2 & 0 & 0 & 0 \\
+        0 & \frac{91}{3}g^2 & 0 & 0 \\
+        0 & 0 & 35g^2 & 0 \\
+        0 & 0 & 0 & 35g^2 t_{\theta_w}^2
+        \end{pmatrix}
+    \end{align}
+\end{subequations}
+
 
 % \begin{acknowledgments}
 % Acknowledgments
