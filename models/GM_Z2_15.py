@@ -36,7 +36,7 @@ class GM_Z2_15(generic_potential.generic_potential):
         self.renormScaleSq = C_VEV**2
 
         self.g = 2.0*C_MW/C_VEV
-        self.gp = np.sqrt(54.0*(C_MZ**2-C_MW**2)/C_VEV**2)
+        self.gp = np.sqrt(4.0*(C_MZ**2-C_MW**2)/C_VEV**2)
         self.CW = C_MW/C_MZ
         self.SW = np.sqrt(1.0-self.CW**2)
         self.TW = self.SW/self.CW
