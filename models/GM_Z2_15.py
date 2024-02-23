@@ -127,13 +127,13 @@ class GM_Z2_15(generic_potential.generic_potential):
         omg5 = X[...,1]
 
         mWpmSq = self.g**2*(omg1**2+8.0*omg5**2)/4.0
-        mWpmSqT = mWpmSq + 91.0*self.g**2*T**2/18.0
+        mWpmSqT = mWpmSq + 371.0*self.g**2*T**2/78.0
 
         mZsq, mAsq = (self.g**2+self.gp**2)*(omg1**2+8.0*omg5**2)/4.0, 0
 
-        atmp = (omg1**2+8.0*omg5**2)*self.g**2/4.0 + 35.0*self.g**2*T**2/6.0
+        atmp = (omg1**2+8.0*omg5**2)*self.g**2/4.0 + 371.0*self.g**2*T**2/78.0
         btmp = -(omg1**2+8.0*omg5**2)*self.g**2/4.0*self.TW
-        ctmp = (omg1**2+8.0*omg5**2)*self.g**2*self.TW**2/4.0 + 35.0*self.g**2*T**2*self.TW**2/6.0
+        ctmp = (omg1**2+8.0*omg5**2)*self.g**2*self.TW**2/4.0 + 371.0*self.g**2*T**2*self.TW**2/78.0
         mAsqT, mZsqT = Eigenvalues_2x2(atmp,btmp,ctmp)
 
         Delta12 = T**2*(9.0*self.g**2/2.0 + 12.0*(4.0*self.lam1 + 3.0*self.lam2)+6.0*(self.yt**2+self.yb**2))/24.0
