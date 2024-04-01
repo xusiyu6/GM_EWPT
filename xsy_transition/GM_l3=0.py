@@ -1,5 +1,6 @@
 import numpy as np
 from cosmoTransitions import generic_potential
+import random
 
 C_VEV = 246.22
 C_MW = 80.385
@@ -9,11 +10,25 @@ C_MB = 4.18
 C_MH = 125.0
 C_PI = 3.1415927
 
+
+def generate_random_number(range_start, range_end):
+    """生成指定范围内的单个随机浮点数。
+
+    Args:
+        range_start (float): 随机数生成的起始值。
+        range_end (float): 随机数生成的终止值。
+
+    Returns:
+        float: 生成的随机浮点数。
+    """
+    return random.uniform(range_start, range_end)
+
+
 class GM_Z2_15(generic_potential.generic_potential):
     """
     The effective potential for Z2 symmetric GM model with v1 and v8=\sqrt{2}v5 (neglecting other background fields)
     """
-    def init(self, M1=250, M5=500,lam2=2,lam4=2):
+    def init(self):
         self.Ndim = 2
         self.renormScaleSq = C_VEV**2
 
@@ -76,4 +91,13 @@ def makePlots(m=None):
         m = GM_Z2_15()
         m.calcTcTrans()
 
-makePlots()
+nn = 1
+while nn <= 3:
+    M1 = generate_random_number(0, 500)
+    M5 = generate_random_number(0, 500)
+    lam2 = generate_random_number(-2.09, 2.09)
+    lam4 = generate_random_number(-0.628, 1.57)
+    print("M1=", M1, "M5=", M5, "lam2=", lam2, "lam4=", lam4)
+    #  makePlots 函数已经定义好，这里调用它
+    makePlots()
+    nn += 1
