@@ -96,7 +96,7 @@ while nn <= 3:
     M1 = generate_random_number(0, 500)
     M5 = generate_random_number(0, 500)
     lam2 = generate_random_number(-2.09, 2.09)
-    lam4 = generate_random_number(-0.628, 1.57)
+    lam4 = generate_random_number(0, 1.57)
     print("M1=", M1, "M5=", M5, "lam2=", lam2, "lam4=", lam4)
     #  makePlots 函数已经定义好，这里调用它
     makePlots()
