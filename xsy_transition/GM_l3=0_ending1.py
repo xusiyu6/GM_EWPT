@@ -1,9 +1,11 @@
 import numpy as np
-from cosmoTransitions import generic_potential
 import random
 import time
-import os
-
+import sys
+from os import path
+curdir=path.dirname(path.abspath(__file__))
+sys.path.append(curdir+'/..')
+from CosmoTransitions.cosmoTransitions import generic_potential
 # 改变输出位置。导入了sys模块。
 # import sys
 
@@ -206,16 +208,25 @@ def GM_EWPT_Scan(filename,n_required=500):
             if not mod.check_UNI() or not mod.check_BFB() or not mod.check_EWPT_critical():
                 continue
             Tc_analytical = mod.Tc_Analytical()
-            nucl_res = mod.findAllTransitions()
+            nucl_res = []
+            try:
+                nucl_res = mod.findAllTransitions()
+            except Exception as e:
+                print("Error in numerical calculations: %s"%e)
             for nucl in nucl_res:
                 nucl_type = nucl['trantype']
                 if nucl_type != 1:
                     continue
                 Tn = nucl['Tnuc']
+                dRho = nucl['Delta_rho']
+                beta = nucl['betaHn_GW']
                 crit_res = nucl['crit_trans']
-                Tc = crit_res['Tcrit']
+                Tc = -1
+                if crit_res:
+                    Tc = crit_res['Tcrit']
                 n_obtained += 1
-                f.write("%f %f %f %f %f %f %f"%(M1_rnd,M5_rnd,lam2_rnd,lam4_rnd,Tn,Tc,Tc_analytical))
+                f.write("%f %f %f %f %f %f %f %f %f\n"%(M1_rnd,M5_rnd,lam2_rnd,lam4_rnd,Tn,Tc,Tc_analytical,dRho,beta))
+                f.flush()
 
 
 if __name__ == "__main__":
