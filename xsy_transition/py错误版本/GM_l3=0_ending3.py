@@ -59,11 +59,9 @@ class GM_Z2_15(generic_potential.generic_potential):
     def check_EWPT_critical(self):
         if self.c3/self.c2 >= 3.0*self.mu32/self.mu22:
             return False
-        if 3.0*self.mu32/self.mu22 >= 3.0*np.sqrt(self.lam4)/np.sqrt(self.lam1):
+        if 3.0*self.mu32/self.mu22 >= 3.0*(2.0*self.lam2 - self.lam5)/4.0/self.lam1:
             return False
-        if 3.0*np.sqrt(self.lam4)/np.sqrt(self.lam1) >= 3.0*(2.0*self.lam2 - self.lam5)/4.0/self.lam1:
-            return False
-        return True;
+        return True
 
     def check_UNI(self, method = 0): # Checking whether the Unitarity conditions are satisfied
         # Method 1: |a0|<1;
@@ -154,8 +152,7 @@ def eqtest(M1, M5, lam2, lam4):
     eq1 = ((3 * g ** 2 + gp ** 2) / 2 + 2 * lam2 + 11 * lam4) / (
             (3 * g ** 2 + gp ** 2) / 16 + yt ** 2 / 4 + 0.25 * MH ** 2 / v ** 2 + 1.5 * lam2)
     eq2 = (-3) * (M1 ** 2 + 2 * M5 ** 2 - 4 * lam2 * v ** 2) / MH ** 2
-    eq3 = (6 * lam4 ** 0.5) / (0.5 * MH ** 2 / v ** 2) ** 0.5
-    eq4 = (6 * (2 * lam2 * v ** 2 - 2 * (M5 ** 2 - M1 ** 2))) / MH ** 2
+    eq3 = (6 * (2 * lam2 * v ** 2 - 2 * (M5 ** 2 - M1 ** 2))) / MH ** 2
 
     def omega(zeta):
         B = (1.5 * (zeta - 1 / 3)) ** 0.5
@@ -172,7 +169,7 @@ def eqtest(M1, M5, lam2, lam4):
     #     return 1
 
     if (
-            eq1 < eq2 and eq2 < eq3 and eq3 < eq4 and
+            eq1 < eq2 and eq2 < eq3 and
 
             ((6 * lam1 - 11 * lam4) ** 2 + 36 * lam2 ** 2) ** 0.5 + abs(6 * lam1 + 11 * lam4) < 4 * C_PI and
             ((2 * lam1 - 2 * lam4) ** 2 + lam5 ** 2) ** 0.5 + abs(2 * lam1 + 2 * lam4) < 4 * C_PI and
@@ -195,12 +192,12 @@ def makePlots(M1, M5, lam2, lam4, m=None):
         # 将m.calcTcTrans()的返回值返回到makePlots外
         return m.findAllTransitions()
 
-def GM_EWPT_Scan(filename,n_required=500):
+def GM_EWPT_Scan(filename,n_required=5):
     with open(filename,'w') as f:
         n_obtained = 0
         while n_obtained < n_required:
-            M1_rnd = generate_random_number(0,2000)
-            M5_rnd = generate_random_number(0,2000)
+            M1_rnd = generate_random_number(0,3000)
+            M5_rnd = generate_random_number(0,3000)
             lam2_rnd = generate_random_number(-3,3)
             lam4_rnd = generate_random_number(0,3.2)
 
@@ -208,6 +205,8 @@ def GM_EWPT_Scan(filename,n_required=500):
             if not mod.check_UNI() or not mod.check_BFB() or not mod.check_EWPT_critical():
                 continue
             Tc_analytical = mod.Tc_Analytical()
+            if M1_rnd / Tc_analytical<10 or M5_rnd / Tc_analytical<10 :
+                continue
             nucl_res = []
             try:
                 nucl_res = mod.findAllTransitions()

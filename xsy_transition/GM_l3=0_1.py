@@ -45,13 +45,6 @@ class GM_Z2_15(generic_potential.generic_potential):
         self.c2 = (3.0*self.g**2+self.gp**2)/16.0 + self.yt**2/4.0 + 2.0*self.lam1 + 1.5*self.lam2
         self.c3 = (3.0*self.g**2+self.gp**2)/2.0 + 2.0*self.lam2 + 11.0*self.lam4
 
-    def check_EWPT_critical(self):
-        if self.c3/self.c2 >= 3.0*self.mu32/self.mu22:
-            return False
-        if 3.0*self.mu32/self.mu22 >= 3.0*(2.0*self.lam2 - self.lam5)/4.0/self.lam1:
-            return False
-        return True
-
     def check_UNI(self, method = 0): # Checking whether the Unitarity conditions are satisfied
         # Method 1: |a0|<1;
         # Method 0: |Rea0|<1/2;
@@ -98,9 +91,8 @@ def GM_EWPT_Scan(filename,n_required=500):
             lam4_rnd = generate_random_number(0,3.2)
 
             mod = GM_Z2_15(M1_rnd,M5_rnd,lam2_rnd,lam4_rnd)
-            if not mod.check_UNI() or not mod.check_BFB() or not mod.check_EWPT_critical():
+            if not mod.check_UNI() or not mod.check_BFB() :
                 continue
-            # Tc_analytical = mod.Tc_Analytical()
            
             f.write("%f %f %f %f %f %f %f %f %f\n"%(M1_rnd,M5_rnd,lam2_rnd,lam4_rnd))
             f.flush()
