@@ -94,7 +94,7 @@ def GM_EWPT_Scan(filename,n_required=500):
             if not mod.check_UNI() or not mod.check_BFB() :
                 continue
            
-            f.write("%f %f %f %f %f %f %f %f %f\n"%(M1_rnd,M5_rnd,lam2_rnd,lam4_rnd))
+            f.write("%f %f %f %f \n"%(M1_rnd,M5_rnd,lam2_rnd,lam4_rnd))
             f.flush()
 
 
